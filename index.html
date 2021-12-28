@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Library</title>
+      <link rel="stylesheet" href="library.css">
+  </head>
+  <body> 
+    <button class="openButton" onclick="openForm()">Add a book</button>
+      <div id="formPopup">
+        <form class="form-container">
+        <h1>Add a Book</h1>
+        
+        <input type="text" placeholder="Enter Title" id="title" required>
+
+        
+        <input type="text" placeholder="Enter Author" id="author" required>
+
+        
+        <input type="text" placeholder="Enter Number of Pages" id="pages" required>
+
+        <input type="checkbox" id="check"> Read?
+        <button type="submit" id="submit" class="btn">Submit</button>
+        <button type="button" id="btnCancel" class="btn" onclick="closeForm()">Close</button>
+      </form>
+      </div>
+
+      <div id="myDisplay"></div>
+
+    <script src="books.js"></script>
+  </body>
+</html>
