@@ -28,7 +28,9 @@ const submitButtton = document.querySelector('#submit')
 submitButtton.addEventListener('click', () => {
     addBookToLibrary();
     clearStatus();
+    refreshDisplay();
     displayTiles(myLibrary.length);
+    document.getElementById('submit').disabled = true;
     console.log('submit works')
 });
 
@@ -51,30 +53,24 @@ submitButtton.addEventListener('click', () => {
  
 const myDisplay = document.querySelector('#myDisplay');
 
- //display
- //everytime submit is hit, it ends up redoing this
- function displayTiles(displayLength){
+function displayTiles(displayLength){
     for (let i=0; i < displayLength; i++){
         const individualBook = document.createElement('div');
-        //maybe, seems to be repeating the full library each time
         individualBook.innerHTML = myLibrary[i].info();
         individualBook.classList.add('newEntry');
         myDisplay.appendChild(individualBook);
+        //exp. creates a delete button on entry
+        let delBtn = document.createElement('BUTTON');
+        delBtn.innerHTML = 'Delete Entry'
+        myDisplay.appendChild(delBtn)
         console.log('display works')
     }
  }
 
-//lets try this without a counter
-// function displayTiles(){
-//     const individualBook = document.createElement('div');
-//     //maybe, seems to be repeating the full library each time
-//     individualBook.innerHTML = myLibrary[i].info();
-//     individualBook.classList.add('newEntry');
-//     myDisplay.appendChild(individualBook);
-//     console.log('display works')
-    
-//  }
-
+ function refreshDisplay() {
+    const clearBook = document.querySelectorAll('.newEntry');
+    clearBook.forEach(book => book.remove());
+ }
 
 //prototype has to include 'this.object'
 book.prototype.info = function() {
@@ -93,8 +89,6 @@ console.log(theHobbit.info())
 //- have a counter in submit that increases myLibrary[].info each time it is pressed
 //give each DOM element a data-attribute that corresponds to the index nof the library array.
 
-
-
 function openForm() {
     document.getElementById("formPopup").style.display = "block";
   }
@@ -103,3 +97,13 @@ function openForm() {
     document.getElementById("formPopup").style.display = "none";
     clearStatus();
   }
+
+
+
+  function formFill() {
+    if(document.getElementById("title").value==="" || document.getElementById("author").value==="" || document.getElementById("pages").value==="") { 
+           document.getElementById('submit').disabled = true; 
+       } else { 
+           document.getElementById('submit').disabled = false;
+       }
+   }

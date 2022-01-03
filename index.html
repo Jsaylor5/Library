@@ -10,16 +10,14 @@
         <form class="form-container">
         <h1>Add a Book</h1>
         
-        <input type="text" placeholder="Enter Title" id="title" required>
+        <input type="text" onkeyup="formFill()" placeholder="Enter Title" id="title" required>
 
-        
-        <input type="text" placeholder="Enter Author" id="author" required>
+        <input type="text" onkeyup="formFill()" placeholder="Enter Author" id="author" required>
 
-        
-        <input type="text" placeholder="Enter Number of Pages" id="pages" required>
+        <input type="number" onkeyup="formFill()" placeholder="Enter Number of Pages" id="pages" required>
 
         <input type="checkbox" id="check"> Read?
-        <button type="submit" id="submit" class="btn">Submit</button>
+        <button type="submit" id="submit" class="btn" disabled>Submit</button>
         <button type="button" id="btnCancel" class="btn" onclick="closeForm()">Close</button>
       </form>
       </div>
