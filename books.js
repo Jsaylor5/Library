@@ -12,8 +12,6 @@ let displayAuthor = document.getElementById("author");
 let displayPages = document.getElementById("pages");
 let checkStatus = document.getElementById("check");
 
-console.log(checkStatus.checked)
-
 const addBookToLibrary = () => {
     let title = displayTitle.value;
     let author = displayAuthor.value;
@@ -35,21 +33,21 @@ submitButtton.addEventListener('click', () => {
 });
 
 
- const clearStatus = () => {
+const clearStatus = () => {
     displayTitle.value = '';
     displayAuthor.value = '';
     displayPages.value = '';
     checkStatus.checked = false;
- };
+};
 
- const readStatus = () => {
+const readStatus = () => {
     if (checkStatus.checked == true) {
         return 'Yes, I have read it.';
         
     } else {
         return 'No, I have not read it.';
     }
- };
+};
  
 const myDisplay = document.querySelector('#myDisplay');
 
@@ -59,51 +57,72 @@ function displayTiles(displayLength){
         individualBook.innerHTML = myLibrary[i].info();
         individualBook.classList.add('newEntry');
         myDisplay.appendChild(individualBook);
-        //exp. creates a delete button on entry
-        let delBtn = document.createElement('BUTTON');
-        delBtn.innerHTML = 'Delete Entry'
-        myDisplay.appendChild(delBtn)
-        console.log('display works')
+        createDel(i);
     }
- }
+};
 
- function refreshDisplay() {
+function refreshDisplay() {
     const clearBook = document.querySelectorAll('.newEntry');
     clearBook.forEach(book => book.remove());
- }
+    const clearDel = document.querySelectorAll('#delBtn')
+    clearDel.forEach(btn => btn.remove());
+
+};
 
 //prototype has to include 'this.object'
 book.prototype.info = function() {
     return this.title + " by " + this.author +'. ' + "Pages: " + this.pages + '. ' + this.read
 };
 
-const theHobbit = new book('The Hobbit', 'JRR Tolken', 'alot', 'yes, I have read it')
-console.log(theHobbit.info())
-
-//notes
-//in displayTiles have each book/tile increase with the counter, and pull from myLibrary
-//ex. myLibrary[i].title/pages/author/read
-// use myLibrary[0].info() to get full thing
-//need to have the display not add previous entries.
-//-in the submit button, have it pass the next index to displayTiles in a way that doesn't make it repeat.
-//- have a counter in submit that increases myLibrary[].info each time it is pressed
-//give each DOM element a data-attribute that corresponds to the index nof the library array.
-
 function openForm() {
     document.getElementById("formPopup").style.display = "block";
-  }
+};
   
-  function closeForm() {
+function closeForm() {
     document.getElementById("formPopup").style.display = "none";
     clearStatus();
-  }
+};
+
+//create delete button
+function createDel(i) {
+    let delBtn = document.createElement('BUTTON');
+    delBtn.innerHTML = 'Delete Entry';
+    delBtn.id = 'delBtn';
+    delBtn.addEventListener('click', () => {
+        console.log('del clicked');
+        deleteBtn(delBtn.dataset.indexNumber);
+    });
+    delBtn.dataset.indexNumber = i;
+    myDisplay.appendChild(delBtn);
+};
+//delete function
+function deleteBtn(delNum) {
+    myLibrary.splice(delNum, 1);
+    refreshDisplay();
+    displayTiles(myLibrary.length);
+}
 
 
-
-  function formFill() {
+//disables input if fields are not present
+function formFill() {
     if(document.getElementById("title").value==="" || document.getElementById("author").value==="" || document.getElementById("pages").value==="") { 
            document.getElementById('submit').disabled = true; 
        } else { 
            document.getElementById('submit').disabled = false;
        }
-   }
+};
+
+//prefilled books
+const bookOne = new book('The Name of the Wind', 'Patrick Rothfuss', 662, 'Yes, I have read it.')
+myLibrary.push(bookOne)
+
+const bookTwo = new book('The Way of Shadows', 'Brent Weeks', 668, 'Yes, I have read it.')
+myLibrary.push(bookTwo)
+
+const bookThree = new book('Darkness at Noon', 'Arthur Koestler', 228, 'Yes, I have read it.')
+myLibrary.push(bookThree)
+
+const bookFour = new book('Red Storm Rising', 'Tom Clancy', 656, 'Yes, I have read it.')
+myLibrary.push(bookFour)
+
+displayTiles(myLibrary.length);
