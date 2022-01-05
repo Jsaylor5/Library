@@ -13,61 +13,93 @@ html {
 
 /* hidden popup form */
 #formPopup {
-display: none;
-position: fixed;
-top: 0;
-right: 20px;
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 20px;
 
 }
 
 /* Add a book button */
 .openButton {
-background-color: rgb(85,85,85);
-color: white;
-padding: 16px 20px;
-border: none;
-cursor: pointer;
-opacity: 0.8;
-position: fixed;
-top: 23px;
-right: 28px;
-width: 180px;
+  background-color: rgb(85,85,85);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  top: 23px;
+  right: 28px;
+  width: 180px;
 }
 
 
 .form-container {
-max-width: 300px;
-padding: 10px;
-background-color: rgb(105, 105, 105);
+  max-width: 300px;
+  padding: 10px;
+  background-color: rgb(105, 105, 105);
 }
 
 
 .form-container .btn {
-background-color: rgb(0,220,0);
-color: white;
-padding: 16px 20px;
-border: none;
-width: 100%;
-margin-bottom:10px;
-opacity: 0.8;
+  background-color: rgb(0,220,0);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
 }
 
 .form-container #btnCancel {
-background-color: rgb(220,0,0);
+  background-color: rgb(220,0,0);
 }
 
-.form-container input[type=text]{
-width: 100%;
-padding: 15px;
-margin: 5px 0 22px 0;
-border: none;
-background: white;
-}
-
-.form-container input[type=number]{
+.form-container input[type=text] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: white;
-  }
+}
+
+.form-container input[type=number] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: white;
+}
+
+.form-container input[type=url] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: white;
+}
+#myDisplay {
+  /* width: 80%;
+  height: 80%;
+  top: 20%;
+  right: 50%;
+  display: inline-block
+  /* grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, 1fr);*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.newEntry {
+  width: 80px;
+  height: 100px;
+  border: 1px solid black;
+  grid-template-rows: repeat(4, 1fr);
+}
+
+#delBtn {
+  height: 20px;
+  width: 50px;
+}

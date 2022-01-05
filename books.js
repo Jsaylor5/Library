@@ -42,15 +42,16 @@ const clearStatus = () => {
 
 const readStatus = () => {
     if (checkStatus.checked == true) {
-        return 'Yes, I have read it.';
+        return true;
         
     } else {
-        return 'No, I have not read it.';
+        return false;
     }
 };
  
 const myDisplay = document.querySelector('#myDisplay');
 
+//this needs work
 function displayTiles(displayLength){
     for (let i=0; i < displayLength; i++){
         const individualBook = document.createElement('div');
@@ -60,6 +61,26 @@ function displayTiles(displayLength){
         createDel(i);
     }
 };
+
+// function displayTiles(displayLength){
+//     for (let i = 0; i < displayLength; i++){
+//         const individualBook = document.createElement('div');
+//         const bookTitle = document.createElement('div');
+//         const bookAuthor = document.createElement('div');
+//         const bookPages = document.createElement('div');
+//         const readBtn = document.createElement('button');
+//         const delBtn = document.createElement('button');
+
+//         individualBook.classList.add('newEntry');
+//         individualBook.dataset.indexNumber = i;
+
+//         bookTitle.innerHTML = myLibrary[i].title;
+//         bookTitle.classList.add('title');
+//         individualBook.appendChild(bookTitle);
+
+//     }
+// }
+
 
 function refreshDisplay() {
     const clearBook = document.querySelectorAll('.newEntry');
@@ -113,16 +134,16 @@ function formFill() {
 };
 
 //prefilled books
-const bookOne = new book('The Name of the Wind', 'Patrick Rothfuss', 662, 'Yes, I have read it.')
+const bookOne = new book('The Name of the Wind', 'Patrick Rothfuss', 662, true)
 myLibrary.push(bookOne)
 
-const bookTwo = new book('The Way of Shadows', 'Brent Weeks', 668, 'Yes, I have read it.')
+const bookTwo = new book('The Way of Shadows', 'Brent Weeks', 668, true)
 myLibrary.push(bookTwo)
 
-const bookThree = new book('Darkness at Noon', 'Arthur Koestler', 228, 'Yes, I have read it.')
+const bookThree = new book('Darkness at Noon', 'Arthur Koestler', 228, true)
 myLibrary.push(bookThree)
 
-const bookFour = new book('Red Storm Rising', 'Tom Clancy', 656, 'Yes, I have read it.')
+const bookFour = new book('Red Storm Rising', 'Tom Clancy', 656, true)
 myLibrary.push(bookFour)
 
 displayTiles(myLibrary.length);
