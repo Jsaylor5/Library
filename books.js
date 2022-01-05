@@ -51,17 +51,6 @@ const readStatus = () => {
  
 const myDisplay = document.querySelector('#myDisplay');
 
-//this needs work
-// function displayTiles(displayLength){
-//     for (let i=0; i < displayLength; i++){
-//         const individualBook = document.createElement('div');
-//         individualBook.innerHTML = myLibrary[i].info();
-//         individualBook.classList.add('newEntry');
-//         myDisplay.appendChild(individualBook);
-//         createDel(i);
-//     }
-// };
-
 function displayTiles(displayLength){
     for (let i = 0; i < displayLength; i++){
         const individualBook = document.createElement('div');
@@ -96,6 +85,16 @@ function displayTiles(displayLength){
         else{
             readBtn.innerHTML = 'Not read'
         };
+        readBtn.addEventListener('click', () => {
+            if (myLibrary[i].read === true){
+                myLibrary[i].read = false;
+                readBtn.innerHTML = 'Not read';
+            }
+            else{
+                myLibrary[i].read = true;
+                readBtn.innerHTML = 'Read';
+            }
+        });
 
         delBtn.classList.add('delBtn');
         delBtn.innerHTML = 'Delete';
@@ -118,9 +117,10 @@ function refreshDisplay() {
 };
 
 //prototype has to include 'this.object'
-book.prototype.info = function() {
-    return this.title + " by " + this.author +'. ' + "Pages: " + this.pages + '. ' + this.read
-};
+//no longer used in this project
+// book.prototype.info = function() {
+//     return this.title + " by " + this.author +'. ' + "Pages: " + this.pages + '. ' + this.read
+// };
 
 function openForm() {
     document.getElementById("formPopup").style.display = "block";
