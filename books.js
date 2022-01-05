@@ -52,34 +52,61 @@ const readStatus = () => {
 const myDisplay = document.querySelector('#myDisplay');
 
 //this needs work
+// function displayTiles(displayLength){
+//     for (let i=0; i < displayLength; i++){
+//         const individualBook = document.createElement('div');
+//         individualBook.innerHTML = myLibrary[i].info();
+//         individualBook.classList.add('newEntry');
+//         myDisplay.appendChild(individualBook);
+//         createDel(i);
+//     }
+// };
+
 function displayTiles(displayLength){
-    for (let i=0; i < displayLength; i++){
+    for (let i = 0; i < displayLength; i++){
         const individualBook = document.createElement('div');
-        individualBook.innerHTML = myLibrary[i].info();
-        individualBook.classList.add('newEntry');
+        const bookTitle = document.createElement('div');
+        const bookAuthor = document.createElement('div');
+        const bookPages = document.createElement('div');
+        const readBtn = document.createElement('button');
+        const delBtn = document.createElement('button');
+
         myDisplay.appendChild(individualBook);
-        createDel(i);
+
+        individualBook.classList.add('newEntry');
+        individualBook.dataset.indexNumber = i;
+
+        bookTitle.innerHTML = myLibrary[i].title;
+        bookTitle.classList.add('title');
+        individualBook.appendChild(bookTitle);
+
+        bookAuthor.innerHTML = myLibrary[i].author;
+        bookAuthor.classList.add('author');
+        individualBook.appendChild(bookAuthor);
+
+        bookPages.innerHTML = myLibrary[i].pages;
+        bookPages.classList.add('pages');
+        individualBook.appendChild(bookPages);
+
+        readBtn.classList.add('readBtn')
+        individualBook.appendChild(readBtn)
+        if (myLibrary[i].read === true){
+            readBtn.innerHTML = 'Read'
+        }
+        else{
+            readBtn.innerHTML = 'Not read'
+        };
+
+        delBtn.classList.add('delBtn');
+        delBtn.innerHTML = 'Delete';
+        delBtn.addEventListener('click', () => {
+            console.log('del clicked');
+            deleteBtn(delBtn.dataset.indexNumber);
+        });
+        individualBook.appendChild(delBtn);
+        
     }
 };
-
-// function displayTiles(displayLength){
-//     for (let i = 0; i < displayLength; i++){
-//         const individualBook = document.createElement('div');
-//         const bookTitle = document.createElement('div');
-//         const bookAuthor = document.createElement('div');
-//         const bookPages = document.createElement('div');
-//         const readBtn = document.createElement('button');
-//         const delBtn = document.createElement('button');
-
-//         individualBook.classList.add('newEntry');
-//         individualBook.dataset.indexNumber = i;
-
-//         bookTitle.innerHTML = myLibrary[i].title;
-//         bookTitle.classList.add('title');
-//         individualBook.appendChild(bookTitle);
-
-//     }
-// }
 
 
 function refreshDisplay() {
@@ -104,18 +131,6 @@ function closeForm() {
     clearStatus();
 };
 
-//create delete button
-function createDel(i) {
-    let delBtn = document.createElement('BUTTON');
-    delBtn.innerHTML = 'Delete Entry';
-    delBtn.id = 'delBtn';
-    delBtn.addEventListener('click', () => {
-        console.log('del clicked');
-        deleteBtn(delBtn.dataset.indexNumber);
-    });
-    delBtn.dataset.indexNumber = i;
-    myDisplay.appendChild(delBtn);
-};
 //delete function
 function deleteBtn(delNum) {
     myLibrary.splice(delNum, 1);
