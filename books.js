@@ -1,23 +1,26 @@
 let myLibrary = []
 
-function book (title, author, pages, read) {
+function book (title, author, pages, read, img) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
+    this.img = img
 };
 
 let displayTitle = document.getElementById("title");
 let displayAuthor = document.getElementById("author");
 let displayPages = document.getElementById("pages");
 let checkStatus = document.getElementById("check");
+let displayImg = document.getElementById("image");
 
 const addBookToLibrary = () => {
     let title = displayTitle.value;
     let author = displayAuthor.value;
     let pages = displayPages.value;
     let read = readStatus();
-    let newBook = new book(title, author, pages, read);
+    let img = displayImg.value
+    let newBook = new book(title, author, pages, read, img);
     myLibrary.push(newBook);
 };
 
@@ -59,6 +62,7 @@ function displayTiles(displayLength){
         const bookPages = document.createElement('div');
         const readBtn = document.createElement('button');
         const delBtn = document.createElement('button');
+        const bookImg = document.createElement('img');
 
         myDisplay.appendChild(individualBook);
 
@@ -76,6 +80,10 @@ function displayTiles(displayLength){
         bookPages.innerHTML = myLibrary[i].pages;
         bookPages.classList.add('pages');
         individualBook.appendChild(bookPages);
+
+        bookImg.src = myLibrary[i].img;
+        bookImg.classList.add('image');
+        individualBook.appendChild(bookImg);
 
         readBtn.classList.add('readBtn')
         individualBook.appendChild(readBtn)
@@ -100,7 +108,7 @@ function displayTiles(displayLength){
         delBtn.innerHTML = 'Delete';
         delBtn.addEventListener('click', () => {
             console.log('del clicked');
-            deleteBtn(delBtn.dataset.indexNumber);
+            deleteBtn(i);
         });
         individualBook.appendChild(delBtn);
         
@@ -149,16 +157,16 @@ function formFill() {
 };
 
 //prefilled books
-const bookOne = new book('The Name of the Wind', 'Patrick Rothfuss', 662, true)
+const bookOne = new book('The Name of the Wind', 'Patrick Rothfuss', 662, true, 'http://pop-verse.com/wp-content/uploads/2014/06/9780575081406.jpg')
 myLibrary.push(bookOne)
 
-const bookTwo = new book('The Way of Shadows', 'Brent Weeks', 668, true)
+const bookTwo = new book('The Way of Shadows', 'Brent Weeks', 668, true, 'https://hachette.imgix.net/books/9780748112586.jpg')
 myLibrary.push(bookTwo)
 
-const bookThree = new book('Darkness at Noon', 'Arthur Koestler', 228, true)
+const bookThree = new book('Darkness at Noon', 'Arthur Koestler', 228, true, 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781501161315/darkness-at-noon-9781501161315_hr.jpg')
 myLibrary.push(bookThree)
 
-const bookFour = new book('Red Storm Rising', 'Tom Clancy', 656, true)
+const bookFour = new book('Red Storm Rising', 'Tom Clancy', 656, true, 'https://img1.od-cdn.com/ImageType-100/1191-1/%7B860BCC71-9E95-4AB2-8F5C-93D622220BBE%7DImg100.jpg')
 myLibrary.push(bookFour)
 
 displayTiles(myLibrary.length);

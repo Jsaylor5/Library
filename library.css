@@ -99,7 +99,12 @@ html {
   grid-template-rows: repeat(4, 1fr);
 }
 
-#delBtn {
+.delBtn {
   height: 20px;
+  width: 50px;
+}
+/* change this later */
+.image {
+  height: 80px;
   width: 50px;
 }
