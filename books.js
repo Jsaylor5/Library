@@ -46,7 +46,6 @@ const clearStatus = () => {
 const readStatus = () => {
     if (checkStatus.checked == true) {
         return true;
-        
     } else {
         return false;
     }
@@ -97,12 +96,20 @@ function displayTiles(displayLength){
             if (myLibrary[i].read === true){
                 myLibrary[i].read = false;
                 readBtn.innerHTML = 'Not read';
+                readBtn.style.backgroundColor = 'rgb(220,0,0)';
             }
             else{
                 myLibrary[i].read = true;
                 readBtn.innerHTML = 'Read';
+                readBtn.style.backgroundColor = 'rgb(0,220,0)';
             }
         });
+        if (myLibrary[i].read === true){
+            readBtn.style.backgroundColor = 'rgb(0,220,0)';
+        }
+        else{
+            readBtn.style.backgroundColor = 'rgb(220,0,0)';
+        }
 
         delBtn.classList.add('delBtn');
         delBtn.innerHTML = 'Delete';
@@ -114,7 +121,6 @@ function displayTiles(displayLength){
         
     }
 };
-
 
 function refreshDisplay() {
     const clearBook = document.querySelectorAll('.newEntry');
@@ -144,7 +150,7 @@ function deleteBtn(delNum) {
     myLibrary.splice(delNum, 1);
     refreshDisplay();
     displayTiles(myLibrary.length);
-}
+};
 
 
 //disables input if fields are not present
