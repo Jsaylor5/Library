@@ -1,12 +1,22 @@
 let myLibrary = []
 
-function book (title, author, pages, read, img) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.img = img
-};
+// function book (title, author, pages, read, img) {
+//     this.title = title
+//     this.author = author
+//     this.pages = pages
+//     this.read = read
+//     this.img = img
+// };
+
+class book{
+    constructor(title, author, pages, read, img){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+        this.img = img
+    }
+}
 
 let displayTitle = document.getElementById("title");
 let displayAuthor = document.getElementById("author");
